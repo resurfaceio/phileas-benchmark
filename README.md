@@ -1,7 +1,7 @@
 # phileas-benchmark
 Benchmark tests for Phileas PII engine
 
-This command-line program runs a series of benchmarks using [Phileas](https://github.com/philterd/phileas)
+This command-line utility runs a series of single-threaded benchmarks using [Phileas](https://github.com/philterd/phileas)
 to redact PII tokens in strings of varying sizes.
 
 ## Dependencies
