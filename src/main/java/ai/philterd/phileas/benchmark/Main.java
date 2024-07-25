@@ -1,62 +1,52 @@
 package ai.philterd.phileas.benchmark;
 
+import java.util.List;
+
 /**
- * Execute benchmarks for Phileas PII engine.
+ * Run benchmark workloads for Phileas PII engine.
  */
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("\n------------------------------------------------------------------------------------------");
-
         // show usage statement if needed
-        if (args.length != 3) {
-            System.out.println("Usage: java ai.philterd.phileas.benchmark.Main <document> <redactor> <iterations>");
+        if (args.length != 4) {
+            System.out.println("Usage: java ai.philterd.phileas.benchmark.Main <document> <redactor> <repetitions> <workload_millis>");
             throw new IllegalArgumentException("Invalid arguments");
         }
 
         // read arguments
         String arg_document = args[0];
         String arg_redactor = args[1];
-        int arg_iterations = Integer.parseInt(args[2]);
-        System.out.println("Using document: " + arg_document);
-        System.out.println("Using redactor: " + arg_redactor);
-        System.out.println("Using iterations: " + arg_iterations + "\n");
+        int repetitions = Integer.parseInt(args[2]);
+        int workload_millis = Integer.parseInt(args[3]);
 
-        // run benchmarks against document using redactor
-        String document = Documents.get(arg_document);
-        Redactor r = new Redactor(arg_redactor);
-        for (int i = 0; i < arg_iterations; i++) {
-            try {
-                System.out.println("\nstring_length,iterations,elapsed_millis,throughput");
-                run(r, "", 4000000);
-                run(r, document.substring(0, 1), 4000000);
-                run(r, document.substring(0, 2), 4000000);
-                run(r, document.substring(0, 4), 4000000);
-                run(r, document.substring(0, 8), 2000000);
-                run(r, document.substring(0, 16), 2000000);
-                run(r, document.substring(0, 32), 1000000);
-                run(r, document.substring(0, 64), 1000000);
-                run(r, document.substring(0, 128), 400000);
-                run(r, document.substring(0, 256), 200000);
-                run(r, document.substring(0, 512), 100000);
-                run(r, document.substring(0, 768), 100000);
-                run(r, document.substring(0, 1024), 100000);
-                run(r, document.substring(0, 1280), 100000);
-                run(r, document.substring(0, 1536), 100000);
-                run(r, document.substring(0, 1792), 100000);
-                run(r, document.substring(0, 2048), 100000);
-            } catch (StringIndexOutOfBoundsException e) {
-                // do nothing, ignore
+        // create redactor based on Phileas PII engine
+        Redactor redactor = new Redactor(arg_redactor);
+
+        // repeatedly redact documents and print results
+        List<String> documents = "all".equals(arg_document) ? Documents.keys : List.of(arg_document);
+        int[] value_lengths = {0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 3072, 4096};
+        for (int i = 0; i < repetitions; i++) {
+            for (String document : documents) {
+                try {
+                    System.out.println("\n------------------------------------------------------------------------------------------");
+                    System.out.println("Using document: " + document);
+                    System.out.println("Using redactor: " + arg_redactor);
+                    System.out.println("Using workload_millis: " + workload_millis);
+                    System.out.println("\nstring_length,calls_per_sec");
+                    for (int value_length : value_lengths) {
+                        String value = Documents.get(document).substring(0, value_length);
+                        long start = System.currentTimeMillis();
+                        long calls = -1;
+                        while ((++calls % 100 != 0) || (System.currentTimeMillis() - start < workload_millis)) redactor.filter(value);
+                        long calls_per_sec = calls * 1000 / (System.currentTimeMillis() - start);
+                        System.out.println(value.length() + "," + calls_per_sec);
+                    }
+                } catch (StringIndexOutOfBoundsException e) {
+                    // do nothing, ignore
+                }
             }
         }
-    }
-
-    public static void run(Redactor redactor, String value, long iterations) throws Exception {
-        long start = System.currentTimeMillis();
-        for (long i = 0; i < iterations; i++) redactor.filter(value);
-        long elapsed = System.currentTimeMillis() - start;
-        long throughput = iterations * 1000 / (elapsed + 1);
-        System.out.println(value.length() + "," + iterations + "," + elapsed + "," + throughput);
     }
 
 }

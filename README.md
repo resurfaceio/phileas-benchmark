@@ -1,7 +1,7 @@
 # phileas-benchmark
 Benchmark tests for Phileas PII engine
 
-This command-line utility runs a series of single-threaded benchmarks using [Phileas](https://github.com/philterd/phileas)
+This command-line utility runs a series of single-threaded workloads using [Phileas](https://github.com/philterd/phileas)
 to redact PII tokens in strings of varying sizes.
 
 [![CodeFactor](https://www.codefactor.io/repository/github/resurfaceio/phileas-benchmark/badge)](https://www.codefactor.io/repository/github/resurfaceio/phileas-benchmark)
@@ -16,14 +16,14 @@ to redact PII tokens in strings of varying sizes.
 ```
 mvn clean test package
 
-# run standard series
-bash benchmarks.sh
+# run workloads across all documents
+java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=10000 -XX:PerMethodRecompilationCutoff=10000 -jar target/main-jar-with-dependencies.jar all mask_all 1 15000
 
-# run specific test
-java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=10000 -XX:PerMethodRecompilationCutoff=10000 -jar target/main-jar-with-dependencies.jar gettysberg_address mask_credit_cards 1
+# run workloads for specific document
+java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=10000 -XX:PerMethodRecompilationCutoff=10000 -jar target/main-jar-with-dependencies.jar gettysberg_address mask_credit_cards 1 1000
 
-# run with minimal dependencies
-java -server -Xmx512M -cp "lib/*:target/phileas-benchmark-0.0.1.jar" ai.philterd.phileas.benchmark.Main <document> <redactor> <iterations>
+# run workloads with minimal or alternate dependencies
+java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=10000 -XX:PerMethodRecompilationCutoff=10000 -cp "lib/*:target/phileas-benchmark-0.0.1.jar" ai.philterd.phileas.benchmark.Main <document> <redactor> <repetitions> <workload_millis>
 ```
 
 ### Available documents
@@ -35,6 +35,13 @@ java -server -Xmx512M -cp "lib/*:target/phileas-benchmark-0.0.1.jar" ai.philterd
 ### Available redactors
 
 * mask_all
+* mask_bank_routing_numbers
+* mask_bitcoin_addresses
 * mask_credit_cards
+* mask_drivers_licenses
 * mask_email_addresses
+* mask_iban_codes
+* mask_passport_numbers
+* mask_phone_numbers
+* mask_ssns
 * skip_all
