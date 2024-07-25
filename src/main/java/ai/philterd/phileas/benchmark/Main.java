@@ -55,7 +55,7 @@ public class Main {
         long start = System.currentTimeMillis();
         for (long i = 0; i < iterations; i++) redactor.filter(value);
         long elapsed = System.currentTimeMillis() - start;
-        long throughput = iterations / (elapsed + 1) * 1000;
+        long throughput = iterations * 1000 / (elapsed + 1);
         System.out.println(value.length() + "," + iterations + "," + elapsed + "," + throughput);
     }
 
