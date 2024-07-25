@@ -4,6 +4,8 @@ Benchmark tests for Phileas PII engine
 This command-line utility runs a series of single-threaded benchmarks using [Phileas](https://github.com/philterd/phileas)
 to redact PII tokens in strings of varying sizes.
 
+[![CodeFactor](https://www.codefactor.io/repository/github/resurfaceio/phileas-benchmark/badge)](https://www.codefactor.io/repository/github/resurfaceio/phileas-benchmark)
+
 ## Dependencies
 
 * Java 17+
