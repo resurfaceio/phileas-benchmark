@@ -1,12 +1,16 @@
 package ai.philterd.phileas.benchmark;
 
-import java.util.HashMap;
+import java.util.AbstractMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Predefined documents for redaction benchmarks.
  */
 public class Documents {
+
+    // todo add JSON-encoded documents
+    // todo add documents with PCI matches
 
     public static final String GETTYSBERG_ADDRESS = """
             Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
@@ -60,19 +64,21 @@ public class Documents {
             When we let freedom ring, when we let it ring from every tenement and every hamlet, from every state and every city, we will be able to speed up that day when all of God’s children, black men and white men, Jews and Gentiles, Protestants and Catholics, will be able to join hands and sing in the words of the old spiritual, “Free at last, free at last. Thank God Almighty, we are free at last.
             """;
 
-    private static final Map<String, String> all = new HashMap<>();
+    public static final List<String> keys = List.of(
+            "hello_world",
+            "gettysberg_address",
+            "i_have_a_dream"
+    );
 
-    static {
-        all.put("gettysberg_address", GETTYSBERG_ADDRESS);
-        all.put("hello_world", "Hello world");
-        all.put("i_have_a_dream", I_HAVE_A_DREAM);
-        // todo add JSON-encoded documents
-        // todo add documents with PCI matches
-    }
+    public static final Map<String, String> map = Map.ofEntries(
+            new AbstractMap.SimpleEntry<>("hello_world", "Hello world"),
+            new AbstractMap.SimpleEntry<>("gettysberg_address", GETTYSBERG_ADDRESS),
+            new AbstractMap.SimpleEntry<>("i_have_a_dream", I_HAVE_A_DREAM)
+    );
 
     public static String get(String document) {
-        if (all.containsKey(document)) {
-            return all.get(document);
+        if (map.containsKey(document)) {
+            return map.get(document);
         } else {
             throw new IllegalArgumentException("Invalid document name: " + document);
         }
