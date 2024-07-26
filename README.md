@@ -2,7 +2,8 @@
 Benchmark tests for Phileas PII engine
 
 This command-line utility runs a series of single-threaded workloads using [Phileas](https://github.com/philterd/phileas)
-to redact PII tokens in strings of varying sizes.
+to redact PII tokens in strings of varying sizes. Workloads can be run multiple times to warm up the JVM or test long-term use.
+Workloads run for a fixed amount of time rather than a fixed number of iterations.
 
 [![CodeFactor](https://www.codefactor.io/repository/github/resurfaceio/phileas-benchmark/badge)](https://www.codefactor.io/repository/github/resurfaceio/phileas-benchmark)
 
