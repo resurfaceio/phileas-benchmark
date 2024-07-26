@@ -34,19 +34,20 @@ public class Main {
                     System.out.println("Using redactor: " + arg_redactor);
                     System.out.println("Using workload_millis: " + workload_millis);
                     System.out.println("\nstring_length,calls_per_sec");
-                    for (int value_length : value_lengths) {
-                        String value = Documents.get(document).substring(0, value_length);
-                        long start = System.currentTimeMillis();
-                        long calls = -1;
-                        while ((++calls % 100 != 0) || (System.currentTimeMillis() - start < workload_millis)) redactor.filter(value);
-                        long calls_per_sec = calls * 1000 / (System.currentTimeMillis() - start);
-                        System.out.println(value.length() + "," + calls_per_sec);
-                    }
+                    for (int value_length : value_lengths) run_workload(workload_millis, redactor, Documents.get(document).substring(0, value_length));
                 } catch (StringIndexOutOfBoundsException e) {
                     // do nothing, ignore
                 }
             }
         }
+    }
+
+    private static void run_workload(int millis, Redactor redactor, String value) throws Exception {
+        long start = System.currentTimeMillis();
+        long calls = -1;
+        while ((++calls % 100 != 0) || (System.currentTimeMillis() - start < millis)) redactor.filter(value);
+        long calls_per_sec = calls * 1000 / (System.currentTimeMillis() - start);
+        System.out.println(value.length() + "," + calls_per_sec);
     }
 
 }
