@@ -27,7 +27,7 @@ public class Redactor {
             BankRoutingNumberFilterStrategy fs = new BankRoutingNumberFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
-            fs.setMaskLength("same");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
             BankRoutingNumber x = new BankRoutingNumber();
             x.setBankRoutingNumberFilterStrategies(List.of(fs));
             identifiers.setBankRoutingNumber(x);
@@ -38,7 +38,7 @@ public class Redactor {
             BitcoinAddressFilterStrategy fs = new BitcoinAddressFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
-            fs.setMaskLength("same");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
             BitcoinAddress x = new BitcoinAddress();
             x.setBitcoinFilterStrategies(List.of(fs));
             identifiers.setBitcoinAddress(x);
@@ -49,7 +49,7 @@ public class Redactor {
             CreditCardFilterStrategy fs = new CreditCardFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
-            fs.setMaskLength("same");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
             CreditCard x = new CreditCard();
             x.setCreditCardFilterStrategies(List.of(fs));
             identifiers.setCreditCard(x);
@@ -60,7 +60,7 @@ public class Redactor {
             DriversLicenseFilterStrategy fs = new DriversLicenseFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
-            fs.setMaskLength("same");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
             DriversLicense x = new DriversLicense();
             x.setDriversLicenseFilterStrategies(List.of(fs));
             identifiers.setDriversLicense(x);
@@ -71,7 +71,7 @@ public class Redactor {
             EmailAddressFilterStrategy fs = new EmailAddressFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
-            fs.setMaskLength("same");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
             EmailAddress x = new EmailAddress();
             x.setEmailAddressFilterStrategies(List.of(fs));
             identifiers.setEmailAddress(x);
@@ -82,7 +82,7 @@ public class Redactor {
             IbanCodeFilterStrategy fs = new IbanCodeFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
-            fs.setMaskLength("same");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
             IbanCode x = new IbanCode();
             x.setIbanCodeFilterStrategies(List.of(fs));
             identifiers.setIbanCode(x);
@@ -93,7 +93,7 @@ public class Redactor {
             PassportNumberFilterStrategy fs = new PassportNumberFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
-            fs.setMaskLength("same");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
             PassportNumber x = new PassportNumber();
             x.setPassportNumberFilterStrategies(List.of(fs));
             identifiers.setPassportNumber(x);
@@ -104,7 +104,7 @@ public class Redactor {
             PhoneNumberFilterStrategy fs = new PhoneNumberFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
-            fs.setMaskLength("same");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
             PhoneNumber x = new PhoneNumber();
             x.setPhoneNumberFilterStrategies(List.of(fs));
             identifiers.setPhoneNumber(x);
@@ -115,7 +115,7 @@ public class Redactor {
             SsnFilterStrategy fs = new SsnFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
-            fs.setMaskLength("same");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
             Ssn x = new Ssn();
             x.setSsnFilterStrategies(List.of(fs));
             identifiers.setSsn(x);
