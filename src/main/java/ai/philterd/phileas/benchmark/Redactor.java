@@ -5,6 +5,7 @@ import ai.philterd.phileas.model.enums.MimeType;
 import ai.philterd.phileas.model.policy.Identifiers;
 import ai.philterd.phileas.model.policy.Policy;
 import ai.philterd.phileas.model.policy.filters.*;
+import ai.philterd.phileas.model.policy.filters.strategies.AbstractFilterStrategy;
 import ai.philterd.phileas.model.policy.filters.strategies.rules.*;
 import ai.philterd.phileas.model.responses.FilterResponse;
 import ai.philterd.phileas.services.PhileasFilterService;
@@ -24,7 +25,7 @@ public class Redactor {
 
         if (all || "mask_bank_routing_numbers".equals(name)) {
             BankRoutingNumberFilterStrategy fs = new BankRoutingNumberFilterStrategy();
-            fs.setStrategy("MASK");
+            fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength("same");
             BankRoutingNumber x = new BankRoutingNumber();
@@ -35,7 +36,7 @@ public class Redactor {
 
         if (all || "mask_bitcoin_addresses".equals(name)) {
             BitcoinAddressFilterStrategy fs = new BitcoinAddressFilterStrategy();
-            fs.setStrategy("MASK");
+            fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength("same");
             BitcoinAddress x = new BitcoinAddress();
@@ -46,7 +47,7 @@ public class Redactor {
 
         if (all || "mask_credit_cards".equals(name)) {
             CreditCardFilterStrategy fs = new CreditCardFilterStrategy();
-            fs.setStrategy("MASK");
+            fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength("same");
             CreditCard x = new CreditCard();
@@ -57,7 +58,7 @@ public class Redactor {
 
         if (all || "mask_drivers_licenses".equals(name)) {
             DriversLicenseFilterStrategy fs = new DriversLicenseFilterStrategy();
-            fs.setStrategy("MASK");
+            fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength("same");
             DriversLicense x = new DriversLicense();
@@ -68,7 +69,7 @@ public class Redactor {
 
         if (all || "mask_email_addresses".equals(name)) {
             EmailAddressFilterStrategy fs = new EmailAddressFilterStrategy();
-            fs.setStrategy("MASK");
+            fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength("same");
             EmailAddress x = new EmailAddress();
@@ -79,7 +80,7 @@ public class Redactor {
 
         if (all || "mask_iban_codes".equals(name)) {
             IbanCodeFilterStrategy fs = new IbanCodeFilterStrategy();
-            fs.setStrategy("MASK");
+            fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength("same");
             IbanCode x = new IbanCode();
@@ -90,7 +91,7 @@ public class Redactor {
 
         if (all || "mask_passport_numbers".equals(name)) {
             PassportNumberFilterStrategy fs = new PassportNumberFilterStrategy();
-            fs.setStrategy("MASK");
+            fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength("same");
             PassportNumber x = new PassportNumber();
@@ -101,7 +102,7 @@ public class Redactor {
 
         if (all || "mask_phone_numbers".equals(name)) {
             PhoneNumberFilterStrategy fs = new PhoneNumberFilterStrategy();
-            fs.setStrategy("MASK");
+            fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength("same");
             PhoneNumber x = new PhoneNumber();
@@ -112,7 +113,7 @@ public class Redactor {
 
         if (all || "mask_ssns".equals(name)) {
             SsnFilterStrategy fs = new SsnFilterStrategy();
-            fs.setStrategy("MASK");
+            fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength("same");
             Ssn x = new Ssn();
