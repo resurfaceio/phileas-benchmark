@@ -35,7 +35,7 @@ java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=100
 
 ### Available redactors
 
-* mask_all
+For testing single identifiers:
 * mask_bank_routing_numbers
 * mask_bitcoin_addresses
 * mask_credit_cards
@@ -45,4 +45,9 @@ java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=100
 * mask_passport_numbers
 * mask_phone_numbers
 * mask_ssns
-* skip_all
+
+For testing multiple identifiers:
+* mask_all (the identifiers listed above 👆)
+* mask_pci (mask_fastest + email addresses)
+* mask_fastest (bank routing numbers, bitcoin addresses, credit cards, IBAN codes, phone numbers)
+* skip_all (no identifiers masked)
