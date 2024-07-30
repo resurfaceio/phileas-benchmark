@@ -22,7 +22,7 @@ public class Redactor {
         boolean all = "mask_all".equals(name);
         boolean fastest = "mask_fastest".equals(name);
         boolean pci = "mask_pci".equals(name);
-        boolean valid = "skip_all".equals(name);
+        boolean valid = "mask_none".equals(name);
         Identifiers identifiers = new Identifiers();
 
         if (all || fastest || pci || "mask_bank_routing_numbers".equals(name)) {

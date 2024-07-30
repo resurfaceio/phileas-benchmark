@@ -116,7 +116,7 @@ public class RedactorTest {
 
     @Test
     public void skipAllTest() throws Exception {
-        Redactor r = new Redactor("skip_all");
+        Redactor r = new Redactor("mask_none");
         String value = "the payment method is 4532613702852251 visa or 1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71 BTC from user rik@resurfacd.io.";
         FilterResponse fr = r.filter(value);
         expect(fr.filteredText()).toEqual(value);
