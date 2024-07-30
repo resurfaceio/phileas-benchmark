@@ -51,3 +51,5 @@ For testing multiple identifiers:
 * mask_default (mask_fastest + email addresses)
 * mask_fastest (bank routing numbers, bitcoin addresses, credit cards, IBAN codes, phone numbers, ssns)
 * mask_none (no identifiers masked)
+
+Copyright 2024 Philterd, LLC @ https://www.philterd.ai
