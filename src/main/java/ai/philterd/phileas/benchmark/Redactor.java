@@ -20,12 +20,12 @@ public class Redactor {
 
     public Redactor(String name) throws Exception {
         boolean all = "mask_all".equals(name);
+        boolean def = "mask_default".equals(name);
         boolean fastest = "mask_fastest".equals(name);
-        boolean pci = "mask_pci".equals(name);
         boolean valid = "mask_none".equals(name);
         Identifiers identifiers = new Identifiers();
 
-        if (all || fastest || pci || "mask_bank_routing_numbers".equals(name)) {
+        if (all || def || fastest || "mask_bank_routing_numbers".equals(name)) {
             BankRoutingNumberFilterStrategy fs = new BankRoutingNumberFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
@@ -36,7 +36,7 @@ public class Redactor {
             valid = true;
         }
 
-        if (all || fastest || pci || "mask_bitcoin_addresses".equals(name)) {
+        if (all || def || fastest || "mask_bitcoin_addresses".equals(name)) {
             BitcoinAddressFilterStrategy fs = new BitcoinAddressFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
@@ -47,7 +47,7 @@ public class Redactor {
             valid = true;
         }
 
-        if (all || fastest || pci || "mask_credit_cards".equals(name)) {
+        if (all || def || fastest || "mask_credit_cards".equals(name)) {
             CreditCardFilterStrategy fs = new CreditCardFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
@@ -69,7 +69,7 @@ public class Redactor {
             valid = true;
         }
 
-        if (all || pci || "mask_email_addresses".equals(name)) {
+        if (all || def || "mask_email_addresses".equals(name)) {
             EmailAddressFilterStrategy fs = new EmailAddressFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
@@ -80,7 +80,7 @@ public class Redactor {
             valid = true;
         }
 
-        if (all || fastest || pci || "mask_iban_codes".equals(name)) {
+        if (all || def || fastest || "mask_iban_codes".equals(name)) {
             IbanCodeFilterStrategy fs = new IbanCodeFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
@@ -102,7 +102,7 @@ public class Redactor {
             valid = true;
         }
 
-        if (all || fastest || pci || "mask_phone_numbers".equals(name)) {
+        if (all || def || fastest || "mask_phone_numbers".equals(name)) {
             PhoneNumberFilterStrategy fs = new PhoneNumberFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
@@ -113,7 +113,7 @@ public class Redactor {
             valid = true;
         }
 
-        if (all || "mask_ssns".equals(name)) {
+        if (all || def || fastest || "mask_ssns".equals(name)) {
             SsnFilterStrategy fs = new SsnFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");

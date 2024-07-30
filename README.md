@@ -48,6 +48,6 @@ For testing single identifiers:
 
 For testing multiple identifiers:
 * mask_all (the identifiers listed above 👆)
-* mask_pci (mask_fastest + email addresses)
-* mask_fastest (bank routing numbers, bitcoin addresses, credit cards, IBAN codes, phone numbers)
+* mask_default (mask_fastest + email addresses)
+* mask_fastest (bank routing numbers, bitcoin addresses, credit cards, IBAN codes, phone numbers, ssns)
 * mask_none (no identifiers masked)
