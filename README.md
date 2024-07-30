@@ -9,7 +9,7 @@ Workloads run for a fixed amount of time rather than a fixed number of iteration
 
 ## Dependencies
 
-* Java 17+
+* Java 22
 * [philterd/phileas](https://github.com/philterd/phileas) 
 
 ## Running Locally
@@ -52,4 +52,5 @@ For testing multiple identifiers:
 * mask_fastest (bank routing numbers, bitcoin addresses, credit cards, IBAN codes, phone numbers, ssns)
 * mask_none (no identifiers masked)
 
+---
 Copyright 2024 Philterd, LLC @ https://www.philterd.ai
