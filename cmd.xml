@@ -1,0 +1,35 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.2.0 https://maven.apache.org/xsd/assembly-2.2.0.xsd">
+    <id>cmd</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>ai.philterd:phileas-benchmark:jar:</include>
+                <include>ai.philterd:phileas-core:jar:</include>
+                <include>ai.philterd:phileas-model:jar:</include>
+                <include>ai.philterd:phileas-processors-unstructured:jar:</include>
+                <include>ai.philterd:phileas-services-alerts:jar:</include>
+                <include>ai.philterd:phileas-services-anonymization:jar:</include>
+                <include>ai.philterd:phileas-services-disambiguation:jar:</include>
+                <include>ai.philterd:phileas-services-metrics:jar:</include>
+                <include>ai.philterd:phileas-services-policies:jar:</include>
+                <include>com.googlecode.libphonenumber:libphonenumber:jar:</include>
+                <include>io.micrometer:micrometer-core:jar:</include>
+                <include>io.micrometer:micrometer-registry-cloudwatch:jar:</include>
+                <include>io.micrometer:micrometer-registry-datadog:jar:</include>
+                <include>io.micrometer:micrometer-registry-jmx:jar:</include>
+                <include>io.micrometer:micrometer-registry-prometheus:jar:</include>
+                <include>org.json:json:jar:</include>
+            </includes>
+            <useProjectArtifact>true</useProjectArtifact>
+            <unpack>true</unpack>
+            <scope>runtime</scope>
+        </dependencySet>
+    </dependencySets>
+</assembly>

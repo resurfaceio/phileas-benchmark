@@ -18,13 +18,10 @@ Workloads run for a fixed amount of time rather than a fixed number of iteration
 mvn clean test package
 
 # run workloads across all documents
-java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=10000 -XX:PerMethodRecompilationCutoff=10000 -jar target/main-jar-with-dependencies.jar all mask_all 1 15000
+java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=10000 -XX:PerMethodRecompilationCutoff=10000 -jar target/phileas-benchmark-cmd.jar all mask_all 1 15000
 
 # run workloads for specific document
-java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=10000 -XX:PerMethodRecompilationCutoff=10000 -jar target/main-jar-with-dependencies.jar gettysberg_address mask_credit_cards 1 1000
-
-# run workloads with minimal or alternate dependencies
-java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=10000 -XX:PerMethodRecompilationCutoff=10000 -cp "lib/*:target/phileas-benchmark-0.0.1.jar" ai.philterd.phileas.benchmark.Main <document> <redactor> <repetitions> <workload_millis>
+java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=10000 -XX:PerMethodRecompilationCutoff=10000 -jar target/phileas-benchmark-cmd.jar gettysberg_address mask_credit_cards 1 1000
 ```
 
 ### Available documents

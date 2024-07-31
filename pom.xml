@@ -32,10 +32,10 @@
                         </goals>
                         <phase>package</phase>
                         <configuration>
-                            <finalName>main</finalName>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
+                            <finalName>phileas-benchmark</finalName>
+                            <descriptors>
+                                <descriptor>cmd.xml</descriptor>
+                            </descriptors>
                             <archive>
                                 <manifest>
                                     <mainClass>ai.philterd.phileas.benchmark.Main</mainClass>
