@@ -15,6 +15,7 @@ Workloads run for a fixed amount of time rather than a fixed number of iteration
 ## Running Locally
 
 ```
+# Maven 3.9 recommended
 mvn clean test package
 
 # run workloads across all documents
