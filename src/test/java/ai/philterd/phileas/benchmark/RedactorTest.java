@@ -46,6 +46,7 @@ public class RedactorTest {
         FilterResponse fr = r.filter("111000038 is the routing number of the Federal Reserve Bank in Minneapolis");
         expect(fr.filteredText()).toEqual("********* is the routing number of the Federal Reserve Bank in Minneapolis");
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.95);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("bank-routing-number");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("111000038");
     }
@@ -56,6 +57,7 @@ public class RedactorTest {
         FilterResponse fr = r.filter("the payment method is 1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71 BTC from user rik@resurfacd.io.");
         expect(fr.filteredText()).toEqual("the payment method is ********************************** BTC from user rik@resurfacd.io.");
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("bitcoin-address");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71");
     }
@@ -66,6 +68,7 @@ public class RedactorTest {
         FilterResponse fr = r.filter("the payment method is 4532613702852251 visa from user rik@resurfacd.io.");
         expect(fr.filteredText()).toEqual("the payment method is **************** visa from user rik@resurfacd.io.");
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("credit-card");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("4532613702852251");
     }
@@ -76,6 +79,7 @@ public class RedactorTest {
         FilterResponse fr = r.filter("the license number is 94-33-0101 from Colorado");
         expect(fr.filteredText()).toEqual("the license number is 94-33-**** from Colorado"); // todo not completely masked
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.5);  // todo low?
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("drivers-license-number");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("0101");
     }
@@ -86,6 +90,7 @@ public class RedactorTest {
         FilterResponse fr = r.filter("the payment method is 4532613702852251 visa from user rik@resurfacd.io.");
         expect(fr.filteredText()).toEqual("the payment method is 4532613702852251 visa from user ****************.");
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("email-address");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("rik@resurfacd.io");
     }
@@ -96,6 +101,7 @@ public class RedactorTest {
         FilterResponse fr = r.filter("the iban code for Germany is DE89 3704 0044 0532 0130 00");
         expect(fr.filteredText()).toEqual("the iban code for Germany is ***************************");
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("iban-code");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("DE89 3704 0044 0532 0130 00");
     }
@@ -106,6 +112,7 @@ public class RedactorTest {
         FilterResponse fr = r.filter("my passport number is 05954348 (not really)"); // todo not working with my real passport number
         expect(fr.filteredText()).toEqual("my passport number is ******** (not really)");
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("passport-number");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("05954348");
     }
@@ -116,6 +123,7 @@ public class RedactorTest {
         FilterResponse fr = r.filter("call me at 1-800-123-5678 x3321");
         expect(fr.filteredText()).toEqual("call me at ********************");
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.75);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("phone-number");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("1-800-123-5678 x3321");
     }
@@ -126,6 +134,7 @@ public class RedactorTest {
         FilterResponse fr = r.filter("my ssn is 123-45-7027, not really");
         expect(fr.filteredText()).toEqual("my ssn is ***********, not really");
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("ssn");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("123-45-7027");
     }
