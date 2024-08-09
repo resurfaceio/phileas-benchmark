@@ -148,4 +148,40 @@ public class RedactorTest {
         expect(fr.explanation().identifiedSpans().size()).toEqual(0);
     }
 
+    @Test
+    public void skipCreditCardNumbersInTimestampTest() throws Exception {
+        Redactor r = new Redactor("mask_credit_cards");
+        String value = "{ \"valid_until_millis\":\"1647725122227\" }";
+        FilterResponse fr = r.filter(value);
+        // expect(fr.filteredText()).toEqual(value); // todo enable when fixed
+        expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9); // todo too high
+        expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("credit-card");
+        expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("1647725122227");
+    }
+
+    @Test
+    public void skipCreditCardNumbersInUUIDTest() throws Exception {
+        Redactor r = new Redactor("mask_credit_cards");
+        String value = "{ \"account_token\":\"47223179-9330-4259-b66c-f2db26efb20c\" }";
+        FilterResponse fr = r.filter(value);
+        // expect(fr.filteredText()).toEqual(value); // todo enable when fixed
+        expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9); // todo too high
+        expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("credit-card");
+        expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("47223179-9330-4259");
+    }
+
+    @Test
+    public void skipPhoneNumbersTest() throws Exception {
+        Redactor r = new Redactor("mask_phone_numbers");
+        String value = "{ \"account_token\":\"9815830b-d20d-4183-a619-b7e9e4c5e498\" }";
+        FilterResponse fr = r.filter(value);
+        expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.6);
+        expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("phone-number");
+        expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("9815830");
+        expect(fr.filteredText()).toEqual(value);
+    }
+
 }

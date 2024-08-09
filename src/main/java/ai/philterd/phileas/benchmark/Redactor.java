@@ -120,6 +120,7 @@ public class Redactor {
 
         if (all || def || fastest || "mask_phone_numbers".equals(name)) {
             PhoneNumberFilterStrategy fs = new PhoneNumberFilterStrategy();
+            fs.setConditions("confidence > 0.70");
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength(AbstractFilterStrategy.SAME);
