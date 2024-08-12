@@ -40,9 +40,12 @@ For testing single identifiers:
 * mask_drivers_licenses
 * mask_email_addresses
 * mask_iban_codes
+* mask_ip_addresses
 * mask_passport_numbers
 * mask_phone_numbers
 * mask_ssns
+* mask_tracking_numbers
+* mask_vehicle_numbers
 
 For testing multiple identifiers:
 * mask_all (the identifiers listed above 👆)

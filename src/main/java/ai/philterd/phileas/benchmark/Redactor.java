@@ -107,6 +107,17 @@ public class Redactor {
             valid = true;
         }
 
+        if (all || "mask_ip_addresses".equals(name)) {
+            IpAddressFilterStrategy fs = new IpAddressFilterStrategy();
+            fs.setStrategy(AbstractFilterStrategy.MASK);
+            fs.setMaskCharacter("*");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
+            IpAddress x = new IpAddress();
+            x.setIpAddressFilterStrategies(List.of(fs));
+            identifiers.setIpAddress(x);
+            valid = true;
+        }
+
         if (all || "mask_passport_numbers".equals(name)) {
             PassportNumberFilterStrategy fs = new PassportNumberFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
@@ -138,6 +149,28 @@ public class Redactor {
             Ssn x = new Ssn();
             x.setSsnFilterStrategies(List.of(fs));
             identifiers.setSsn(x);
+            valid = true;
+        }
+
+        if (all || "mask_tracking_numbers".equals(name)) {
+            TrackingNumberFilterStrategy fs = new TrackingNumberFilterStrategy();
+            fs.setStrategy(AbstractFilterStrategy.MASK);
+            fs.setMaskCharacter("*");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
+            TrackingNumber x = new TrackingNumber();
+            x.setTrackingNumberFilterStrategies(List.of(fs));
+            identifiers.setTrackingNumber(x);
+            valid = true;
+        }
+
+        if (all || "mask_vehicle_numbers".equals(name)) {
+            VinFilterStrategy fs = new VinFilterStrategy();
+            fs.setStrategy(AbstractFilterStrategy.MASK);
+            fs.setMaskCharacter("*");
+            fs.setMaskLength(AbstractFilterStrategy.SAME);
+            Vin x = new Vin();
+            x.setVinFilterStrategies(List.of(fs));
+            identifiers.setVin(x);
             valid = true;
         }
 

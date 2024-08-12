@@ -107,6 +107,17 @@ public class RedactorTest {
     }
 
     @Test
+    public void maskIpAddressesTest() throws Exception {
+        Redactor r = new Redactor("mask_ip_addresses");
+        FilterResponse fr = r.filter("the private ip address for my machine is 192.158.1.38");
+        expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
+        expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("ip-address");
+        expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("192.158.1.38");
+        expect(fr.filteredText()).toEqual("the private ip address for my machine is ************");
+    }
+
+    @Test
     public void maskPassportNumbersTest() throws Exception {
         Redactor r = new Redactor("mask_passport_numbers");
         FilterResponse fr = r.filter("my passport number is 05954348 (not really)"); // todo not working with my real passport number
@@ -137,6 +148,28 @@ public class RedactorTest {
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("ssn");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("123-45-7027");
         expect(fr.filteredText()).toEqual("my ssn is ***********, not really");
+    }
+
+    @Test
+    public void maskTrackingNumbersTest() throws Exception {
+        Redactor r = new Redactor("mask_tracking_numbers");
+        FilterResponse fr = r.filter("the UPS tracking number for your order is 1z1234567890123456");
+        expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
+        expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("tracking-number");
+        expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("1z1234567890123456");
+        expect(fr.filteredText()).toEqual("the UPS tracking number for your order is ******************");
+    }
+
+    @Test
+    public void maskVehicleNumbersTest() throws Exception {
+        Redactor r = new Redactor("mask_vehicle_numbers");
+        FilterResponse fr = r.filter("my fake car's vin is WVWHP7AN0CE516562");
+        expect(fr.explanation().identifiedSpans().size()).toEqual(1);
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
+        expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("vin");
+        expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("WVWHP7AN0CE516562");
+        expect(fr.filteredText()).toEqual("my fake car's vin is *****************");
     }
 
     @Test
