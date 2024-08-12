@@ -50,7 +50,7 @@ For testing single identifiers:
 For testing multiple identifiers:
 * mask_all (the identifiers listed above 👆)
 * mask_fastest (bank routing numbers, bitcoin addresses, credit cards, IBAN codes, phone numbers, ssns)
-* mask_none (no identifiers masked)
+* mask_none
 
 ---
 Copyright 2024 Philterd, LLC @ https://www.philterd.ai
