@@ -215,6 +215,7 @@ public class RedactorTest {
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("phone-number");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("9815830");
         expect(fr.filteredText()).toEqual(value);
+        expect(fr.explanation().appliedSpans().size()).toEqual(0); // todo failing
     }
 
 }
