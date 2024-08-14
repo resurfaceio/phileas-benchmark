@@ -30,6 +30,7 @@ public class RedactorTest {
     public void maskAllTest() throws Exception {
         Redactor r = new Redactor("mask_all");
         FilterResponse fr = r.filter("the payment method is 4532613702852251 visa or 1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71 BTC from user rik@resurfacd.io.");
+        expect(fr.explanation().appliedSpans().size()).toEqual(3);
         expect(fr.explanation().identifiedSpans().size()).toEqual(3);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("bitcoin-address");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71");
@@ -44,6 +45,7 @@ public class RedactorTest {
     public void maskBankRoutingNumbersTest() throws Exception {
         Redactor r = new Redactor("mask_bank_routing_numbers");
         FilterResponse fr = r.filter("111000038 is the routing number of the Federal Reserve Bank in Minneapolis");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.95);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("bank-routing-number");
@@ -55,6 +57,7 @@ public class RedactorTest {
     public void maskBitcoinAddressesTest() throws Exception {
         Redactor r = new Redactor("mask_bitcoin_addresses");
         FilterResponse fr = r.filter("the payment method is 1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71 BTC from user rik@resurfacd.io.");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("bitcoin-address");
@@ -66,6 +69,7 @@ public class RedactorTest {
     public void maskCreditCardsTest() throws Exception {
         Redactor r = new Redactor("mask_credit_cards");
         FilterResponse fr = r.filter("the payment method is 4532613702852251 visa from user rik@resurfacd.io.");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("credit-card");
@@ -77,6 +81,7 @@ public class RedactorTest {
     public void maskDriversLicensesTest() throws Exception {
         Redactor r = new Redactor("mask_drivers_licenses");
         FilterResponse fr = r.filter("the license number is 94-33-0101 from Colorado");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.5);  // todo low?
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("drivers-license-number");
@@ -88,6 +93,7 @@ public class RedactorTest {
     public void maskEmailAddressesTest() throws Exception {
         Redactor r = new Redactor("mask_email_addresses");
         FilterResponse fr = r.filter("the payment method is 4532613702852251 visa from user rik@resurfacd.io.");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("email-address");
@@ -99,6 +105,7 @@ public class RedactorTest {
     public void maskIbanCodesTest() throws Exception {
         Redactor r = new Redactor("mask_iban_codes");
         FilterResponse fr = r.filter("the iban code for Germany is DE89 3704 0044 0532 0130 00");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("iban-code");
@@ -110,6 +117,7 @@ public class RedactorTest {
     public void maskIpAddressesTest() throws Exception {
         Redactor r = new Redactor("mask_ip_addresses");
         FilterResponse fr = r.filter("the private ip address for my machine is 192.158.1.38");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("ip-address");
@@ -121,6 +129,7 @@ public class RedactorTest {
     public void maskPassportNumbersTest() throws Exception {
         Redactor r = new Redactor("mask_passport_numbers");
         FilterResponse fr = r.filter("my passport number is 05954348 (not really)"); // todo not working with my real passport number
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("passport-number");
@@ -132,6 +141,7 @@ public class RedactorTest {
     public void maskPhoneNumbersTest() throws Exception {
         Redactor r = new Redactor("mask_phone_numbers");
         FilterResponse fr = r.filter("call me at 1-800-123-5678 x3321");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.75);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("phone-number");
@@ -143,6 +153,7 @@ public class RedactorTest {
     public void maskSSNsTest() throws Exception {
         Redactor r = new Redactor("mask_ssns");
         FilterResponse fr = r.filter("my ssn is 123-45-7027, not really");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("ssn");
@@ -154,6 +165,7 @@ public class RedactorTest {
     public void maskTrackingNumbersTest() throws Exception {
         Redactor r = new Redactor("mask_tracking_numbers");
         FilterResponse fr = r.filter("the UPS tracking number for your order is 1z1234567890123456");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("tracking-number");
@@ -165,6 +177,7 @@ public class RedactorTest {
     public void maskVehicleNumbersTest() throws Exception {
         Redactor r = new Redactor("mask_vehicle_numbers");
         FilterResponse fr = r.filter("my fake car's vin is WVWHP7AN0CE516562");
+        expect(fr.explanation().appliedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("vin");
@@ -177,6 +190,7 @@ public class RedactorTest {
         Redactor r = new Redactor("mask_none");
         String value = "the payment method is 4532613702852251 visa or 1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71 BTC from user rik@resurfacd.io.";
         FilterResponse fr = r.filter(value);
+        expect(fr.explanation().appliedSpans().size()).toEqual(0);
         expect(fr.explanation().identifiedSpans().size()).toEqual(0);
         expect(fr.filteredText()).toEqual(value);
     }
@@ -190,6 +204,7 @@ public class RedactorTest {
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9); // todo too high
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("credit-card");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("1647725122227");
+        expect(fr.explanation().identifiedSpans().get(0).isApplied()).toEqual(true);
         // expect(fr.filteredText()).toEqual(value); // todo enable when fixed
     }
 
@@ -202,6 +217,7 @@ public class RedactorTest {
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9); // todo too high
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("credit-card");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("47223179-9330-4259");
+        expect(fr.explanation().identifiedSpans().get(0).isApplied()).toEqual(true);
         // expect(fr.filteredText()).toEqual(value); // todo enable when fixed
     }
 
@@ -210,12 +226,13 @@ public class RedactorTest {
         Redactor r = new Redactor("mask_phone_numbers");
         String value = "{ \"account_token\":\"9815830b-d20d-4183-a619-b7e9e4c5e498\" }";
         FilterResponse fr = r.filter(value);
+        expect(fr.explanation().appliedSpans().size()).toEqual(0);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
         expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.6);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("phone-number");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("9815830");
+        expect(fr.explanation().identifiedSpans().get(0).isApplied()).toEqual(false);
         expect(fr.filteredText()).toEqual(value);
-        expect(fr.explanation().appliedSpans().size()).toEqual(0); // todo failing
     }
 
 }
