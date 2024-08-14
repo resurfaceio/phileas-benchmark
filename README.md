@@ -10,13 +10,13 @@ Workloads run for a fixed amount of time rather than a fixed number of iteration
 ## Dependencies
 
 * Java 22
+* Maven 3.9.x
 * [philterd/phileas](https://github.com/philterd/phileas) 
 
 ## Running Locally
 
 ```
-# Maven 3.9 recommended
-mvn clean test package
+mvn clean package
 
 # run workloads across all documents
 java -server -Xmx512M -XX:+AlwaysPreTouch -XX:PerBytecodeRecompilationCutoff=10000 -XX:PerMethodRecompilationCutoff=10000 -jar target/phileas-benchmark-cmd.jar all mask_all 1 15000
