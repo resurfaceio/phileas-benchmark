@@ -19,6 +19,7 @@ package ai.philterd.phileas.benchmark;
 import ai.philterd.phileas.model.configuration.PhileasConfiguration;
 import ai.philterd.phileas.model.enums.MimeType;
 import ai.philterd.phileas.model.policy.Identifiers;
+import ai.philterd.phileas.model.policy.IgnoredPattern;
 import ai.philterd.phileas.model.policy.Policy;
 import ai.philterd.phileas.model.policy.filters.*;
 import ai.philterd.phileas.model.policy.filters.strategies.AbstractFilterStrategy;
@@ -68,6 +69,7 @@ public class Redactor {
             fs.setMaskCharacter("*");
             fs.setMaskLength(AbstractFilterStrategy.SAME);
             CreditCard x = new CreditCard();
+            x.setIgnoredPatterns(List.of(new IgnoredPattern("1[5-8][0-9]{11}")));  // ignore unix timestamps
             x.setCreditCardFilterStrategies(List.of(fs));
             identifiers.setCreditCard(x);
             valid = true;

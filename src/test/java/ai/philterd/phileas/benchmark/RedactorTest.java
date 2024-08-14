@@ -200,12 +200,12 @@ public class RedactorTest {
         Redactor r = new Redactor("mask_credit_cards");
         String value = "{ \"valid_until_millis\":\"1647725122227\" }";
         FilterResponse fr = r.filter(value);
+        expect(fr.explanation().appliedSpans().size()).toEqual(0);
         expect(fr.explanation().identifiedSpans().size()).toEqual(1);
-        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9); // todo too high
+        expect(fr.explanation().identifiedSpans().get(0).getConfidence()).toEqual(0.9);
         expect(fr.explanation().identifiedSpans().get(0).getFilterType().toString()).toEqual("credit-card");
         expect(fr.explanation().identifiedSpans().get(0).getText()).toEqual("1647725122227");
-        expect(fr.explanation().identifiedSpans().get(0).isApplied()).toEqual(true);
-        // expect(fr.filteredText()).toEqual(value); // todo enable when fixed
+        expect(fr.filteredText()).toEqual(value);
     }
 
     @Test
