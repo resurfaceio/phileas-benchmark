@@ -49,7 +49,7 @@ For testing single identifiers:
 
 For testing multiple identifiers:
 * mask_all (the identifiers listed above 👆)
-* mask_fastest (bank routing numbers, bitcoin addresses, credit cards, IBAN codes, phone numbers, ssns)
+* mask_fastest (bank routing numbers, bitcoin addresses, credit cards, email addresses, IBAN codes, phone numbers, ssns)
 * mask_none
 
 ---

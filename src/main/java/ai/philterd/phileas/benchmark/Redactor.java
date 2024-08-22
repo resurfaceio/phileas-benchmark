@@ -86,7 +86,7 @@ public class Redactor {
             valid = true;
         }
 
-        if (all || "mask_email_addresses".equals(name)) {
+        if (all || fastest || "mask_email_addresses".equals(name)) {
             EmailAddressFilterStrategy fs = new EmailAddressFilterStrategy();
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
