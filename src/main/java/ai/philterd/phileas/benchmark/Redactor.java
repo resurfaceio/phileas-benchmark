@@ -69,7 +69,6 @@ public class Redactor {
             fs.setMaskCharacter("*");
             fs.setMaskLength(AbstractFilterStrategy.SAME);
             CreditCard x = new CreditCard();
-            x.setIgnoredPatterns(List.of(new IgnoredPattern("1[5-8][0-9]{11}")));  // ignore unix timestamps
             x.setCreditCardFilterStrategies(List.of(fs));
             identifiers.setCreditCard(x);
             valid = true;
@@ -132,7 +131,6 @@ public class Redactor {
 
         if (all || fastest || "mask_phone_numbers".equals(name)) {
             PhoneNumberFilterStrategy fs = new PhoneNumberFilterStrategy();
-            fs.setConditions("confidence > 0.70");
             fs.setStrategy(AbstractFilterStrategy.MASK);
             fs.setMaskCharacter("*");
             fs.setMaskLength(AbstractFilterStrategy.SAME);
