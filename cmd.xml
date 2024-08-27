@@ -17,14 +17,8 @@
                 <include>ai.philterd:phileas-services-alerts:jar:</include>
                 <include>ai.philterd:phileas-services-anonymization:jar:</include>
                 <include>ai.philterd:phileas-services-disambiguation:jar:</include>
-                <include>ai.philterd:phileas-services-metrics:jar:</include>
                 <include>ai.philterd:phileas-services-policies:jar:</include>
                 <include>com.googlecode.libphonenumber:libphonenumber:jar:</include>
-                <include>io.micrometer:micrometer-core:jar:</include>
-                <include>io.micrometer:micrometer-registry-cloudwatch:jar:</include>
-                <include>io.micrometer:micrometer-registry-datadog:jar:</include>
-                <include>io.micrometer:micrometer-registry-jmx:jar:</include>
-                <include>io.micrometer:micrometer-registry-prometheus:jar:</include>
                 <include>org.json:json:jar:</include>
             </includes>
             <useProjectArtifact>true</useProjectArtifact>
