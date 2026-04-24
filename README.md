@@ -5,6 +5,8 @@ This command-line utility runs a series of single-threaded workloads using [Phil
 to redact PII tokens in strings of varying sizes. Workloads can be run multiple times to warm up the JVM or test long-term use.
 Workloads run for a fixed amount of time rather than a fixed number of iterations.
 
+Documentation is available at https://philterd.ai/docs/phileas-benchmark.
+
 [![CodeFactor](https://www.codefactor.io/repository/github/philterd/phileas-benchmark/badge)](https://www.codefactor.io/repository/github/resurfaceio/phileas-benchmark)
 
 ## Dependencies

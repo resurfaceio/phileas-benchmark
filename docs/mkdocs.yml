@@ -1,0 +1,17 @@
+site_name: Phileas
+repo_url: https://github.com/philterd/phileas-benchmark
+site_url: https://philterd.github.io/phileas-benchmark/
+edit_uri: '?query=docs/docs/'
+copyright: Copyright 2026 Philterd, LLC
+site_author: philterd
+site_description: User guide for Phileas Benchmark.
+theme:
+  name: material
+  locale: en
+  palette:
+    primary: red
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - Results: results.md
+  - Infrastructure: infrastructure.md
