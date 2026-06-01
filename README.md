@@ -1,4 +1,7 @@
 # phileas-benchmark
+
+**As of Phileas 4.0.0, these tests are integrated into Phileas directly.**
+
 Benchmark tests for Phileas PII engine
 
 This command-line utility runs a series of single-threaded workloads using [Phileas](https://github.com/philterd/phileas)
